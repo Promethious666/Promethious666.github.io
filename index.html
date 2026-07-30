@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Adam Brown — senior cyber security analyst specialising in threat intelligence, OSINT, detection engineering and security operations.">
+  <title>Adam Brown | Cyber Security Portfolio</title>
+  <style>
+    :root {
+      --night:#071521; --panel:#0d2232; --line:#1f3d50; --white:#f4f8fb;
+      --muted:#9fb3c1; --cyan:#52d3f6; --green:#63e6be; --paper:#eaf1f5;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--white); background:var(--night); font:16px/1.65 Inter,Segoe UI,Arial,sans-serif; }
+    a { color:inherit; }
+    nav { position:sticky; top:0; z-index:4; backdrop-filter:blur(14px); background:#071521dc; border-bottom:1px solid #ffffff12; }
+    .nav-inner { max-width:1120px; margin:auto; padding:15px 24px; display:flex; justify-content:space-between; align-items:center; }
+    .brand { font-weight:800; letter-spacing:.4px; text-decoration:none; }
+    .nav-links { display:flex; gap:20px; font-size:14px; color:var(--muted); }
+    .nav-links a { text-decoration:none; }
+    .nav-links a:hover,.nav-links a:focus { color:var(--cyan); }
+    .hero { max-width:1120px; margin:auto; min-height:680px; padding:110px 24px 80px; display:grid; grid-template-columns:1.45fr .8fr; gap:70px; align-items:center; }
+    .eyebrow { color:var(--green); font-weight:800; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; }
+    h1 { margin:12px 0 20px; font-size:clamp(44px,7vw,78px); line-height:1.02; letter-spacing:-3px; }
+    h1 span { color:var(--cyan); }
+    .lede { max-width:720px; color:#bed0dc; font-size:20px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    .button { display:inline-block; padding:12px 18px; border-radius:7px; border:1px solid var(--cyan); color:var(--night); background:var(--cyan); text-decoration:none; font-weight:800; }
+    .button.secondary { color:var(--white); background:transparent; border-color:var(--line); }
+    .signal { border:1px solid var(--line); background:linear-gradient(145deg,#102c3e,#091b29); border-radius:18px; padding:26px; box-shadow:0 30px 80px #0006; }
+    .signal-title { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:1px; }
+    .signal strong { display:block; font-size:25px; margin:8px 0 16px; }
+    .signal-row { display:flex; justify-content:space-between; padding:10px 0; border-top:1px solid var(--line); color:#c8d6df; }
+    section { padding:80px 24px; }
+    .light { background:var(--paper); color:#172936; }
+    .wrap { max-width:1120px; margin:auto; }
+    h2 { margin:0 0 12px; font-size:36px; line-height:1.15; letter-spacing:-1px; }
+    .section-intro { max-width:750px; margin:0 0 34px; color:#607381; }
+    .dark-intro { color:var(--muted); }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { padding:24px; border:1px solid #cbd8e0; border-radius:12px; background:white; }
+    .card h3 { margin:5px 0 8px; font-size:19px; }
+    .card p { color:#607381; margin:0; }
+    .number { color:var(--blue,#0877a8); font-weight:900; font-size:12px; }
+    .timeline { display:grid; gap:0; margin-top:35px; }
+    .role { display:grid; grid-template-columns:180px 1fr; gap:30px; border-top:1px solid var(--line); padding:24px 0; }
+    .role .date { color:var(--green); font-size:13px; font-weight:800; }
+    .role h3 { margin:0 0 4px; }
+    .role p { margin:0; color:var(--muted); }
+    .cert-list { display:flex; flex-wrap:wrap; gap:10px; }
+    .cert-list span { border:1px solid #c9d6de; background:white; padding:9px 13px; border-radius:999px; font-size:14px; }
+    .contact-box { text-align:center; max-width:800px; margin:auto; padding:45px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,#102c3e,#091b29); }
+    footer { color:#79909f; text-align:center; padding:28px; border-top:1px solid #ffffff10; font-size:13px; }
+    @media(max-width:820px) {
+      .hero { grid-template-columns:1fr; padding-top:80px; }
+      .signal { max-width:520px; }
+      .cards { grid-template-columns:1fr; }
+      .role { grid-template-columns:1fr; gap:5px; }
+      .nav-links { display:none; }
+      h1 { letter-spacing:-2px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#top">ADAM BROWN</a>
+      <div class="nav-links">
+        <a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <div class="eyebrow">Senior Cyber Security Analyst</div>
+      <h1>Turning threat signals into <span>decisive action.</span></h1>
+      <p class="lede">I specialise in threat intelligence, OSINT, detection engineering and security operations across complex multi-vendor environments—building practical controls, leading investigations and helping analysts make better decisions under pressure.</p>
+      <div class="actions">
+        <a class="button" href="#expertise">View expertise</a>
+        <a class="button secondary" href="https://www.linkedin.com/in/swhoami/">LinkedIn profile</a>
+        <a class="button secondary" href="cv-public.html">View public CV</a>
+      </div>
+    </div>
+    <aside class="signal" aria-label="Professional focus">
+      <div class="signal-title">Core expertise</div>
+      <strong>Threat-led Security Operations</strong>
+      <div class="signal-row"><span>OSINT &amp; threat intelligence</span></div>
+      <div class="signal-row"><span>Detection engineering</span></div>
+      <div class="signal-row"><span>Incident leadership</span></div>
+      <div class="signal-row"><span>AI-agent security</span></div>
+    </aside>
+  </header>
+
+  <section class="light" id="expertise">
+    <div class="wrap">
+      <h2>Security capability with operational depth</h2>
+      <p class="section-intro">A career spanning frontline investigations, security engineering, governance and analyst leadership provides both technical depth and an understanding of how controls perform in real organisations.</p>
+      <div class="cards">
+        <article class="card"><div class="number">01</div><h3>Multi-vendor security operations</h3><p>Operational experience across SIEM, endpoint, network, cloud, email, web, identity and remote-access security technologies.</p></article>
+        <article class="card"><div class="number">02</div><h3>Threat intelligence &amp; OSINT</h3><p>Intelligence-led hunting, IOC lifecycle management, source evaluation, confidence handling and translation into defensible detections.</p></article>
+        <article class="card"><div class="number">03</div><h3>Incident response</h3><p>Complex investigation leadership, containment coordination, root-cause analysis, remediation advice and clear reporting for technical and senior audiences.</p></article>
+        <article class="card"><div class="number">04</div><h3>Detection engineering</h3><p>Detection design, rule tuning, false-positive reduction, endpoint and identity coverage, validation and continuous improvement.</p></article>
+        <article class="card"><div class="number">05</div><h3>Security engineering</h3><p>Identity, remote access, endpoint hardening, cloud controls, APIs, automation and enterprise network, web and email protections.</p></article>
+        <article class="card"><div class="number">06</div><h3>Governance and leadership</h3><p>ISO 27001, NIST, CIS and PCI DSS alignment, audit evidence, supplier assurance, management information and analyst development.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Career progression</h2>
+      <p class="section-intro dark-intro">Progressive responsibility from operational and physical security through consulting, engineering and senior cyber security analysis.</p>
+      <div class="timeline">
+        <article class="role"><div class="date">2025–Present</div><div><h3>Senior Cyber Security Analyst · AJ Bell</h3><p>Incident escalation, detection ownership, intelligence-led hunting, stakeholder reporting, audit evidence and analyst coaching.</p></div></article>
+        <article class="role"><div class="date">2023–2025</div><div><h3>Cyber Security Engineer · Love2shop &amp; PayPoint</h3><p>Security engineering, telemetry onboarding, detection development, endpoint protection, operational dashboards, access controls and analyst training.</p></div></article>
+        <article class="role"><div class="date">2021–2023</div><div><h3>Cyber Security Engineer / Information Security Consultant · DWF</h3><p>Incident investigation, security improvement, threat intelligence, cloud governance, ISO 27001 and third-party assurance.</p></div></article>
+        <article class="role"><div class="date">2018–2021</div><div><h3>Cyber Security Professional &amp; Manager · BT</h3><p>Global SOC operations, SIEM-led investigations, response coordination, playbook development and team capability.</p></div></article>
+        <article class="role"><div class="date">2007–2018</div><div><h3>Earlier operational, consulting and leadership roles</h3><p>Network operations, cyber consulting, service assurance, technical leadership and physical-security investigations.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="light" id="credentials">
+    <div class="wrap">
+      <h2>Credentials and professional development</h2>
+      <div class="cert-list">
+        <span>Microsoft SC-900 — Microsoft</span><span>ISC2 CC — ISC2</span><span>CISMP Training — 2022</span><span>CompTIA CySA+ — CompTIA</span><span>CompTIA CSAP — CompTIA</span><span>CompTIA Security+ — CompTIA</span><span>CompTIA Network+ — CompTIA</span><span>SolarWinds Certified Professional — SolarWinds</span><span>Cisco Meraki Network Operator — Cisco</span><span>SC-200 Exam Preparation — QA Ltd</span><span>Applied Threat Hunting Training — EC-Council</span><span>Cyber Risk Intelligence Training — SecurityScorecard</span><span>Security Copilot Ninja Training — Microsoft</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-box">
+      <div class="eyebrow">Professional enquiries</div>
+      <h2>Let’s connect</h2>
+      <p class="dark-intro">For professional opportunities and enquiries, contact me through LinkedIn.</p>
+      <div class="actions" style="justify-content:center">
+        <a class="button" href="https://www.linkedin.com/in/swhoami/">Contact via LinkedIn</a>
+        <a class="button secondary" href="cv-public.html">View public CV</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Adam Brown</footer>
+</body>
+</html>
