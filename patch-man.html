@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Patch Man — an original retro cyber security maze game by Adam Brown.">
+  <title>Patch Man | Adam Brown</title>
+  <style>
+    :root{--ink:#05070b;--panel:#0b111b;--grid:#15243a;--blue:#39a7ff;--cyan:#59f3ff;--patch:#ffe45e;--danger:#ff4f70;--text:#edf8ff;--muted:#91a7b8}
+    *{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:radial-gradient(circle at 50% 15%,#13243a 0,#070b12 42%,#030509 100%);color:var(--text);font-family:"Courier New",monospace;display:grid;place-items:center;padding:20px}
+    .shell{width:min(94vw,620px)}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}.back{color:var(--cyan);text-decoration:none;font-weight:700}.back:hover,.back:focus{text-decoration:underline}
+    h1{margin:0;color:var(--patch);font-size:clamp(30px,8vw,52px);line-height:1;text-shadow:3px 3px 0 #a54d00;letter-spacing:2px}.tag{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .cabinet{background:linear-gradient(145deg,#101a29,#080c13);border:2px solid #29445f;border-radius:18px;padding:clamp(12px,3vw,22px);box-shadow:0 20px 70px #000b,inset 0 0 28px #3ba8ff0a}
+    .scorebar{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:8px;margin-bottom:12px;text-align:center}.stat{border:1px solid #25435e;background:#08101a;padding:8px 4px;border-radius:6px}.label{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}.value{display:block;color:var(--patch);font-weight:900;font-size:20px}.mute{border:1px solid #35536e;background:#101c2b;color:var(--cyan);border-radius:6px;padding:0 10px;font:900 11px monospace;cursor:pointer}
+    .screen{position:relative;border:3px solid #263f58;background:#020407;border-radius:8px;padding:8px;box-shadow:inset 0 0 35px #000}.screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#fff0 0 3px,#73dfff08 4px);mix-blend-mode:screen}.toast{position:absolute;left:50%;top:18px;z-index:3;transform:translate(-50%,-12px);max-width:86%;padding:8px 12px;border:1px solid var(--patch);border-radius:5px;background:#080d16ed;color:var(--patch);font-size:12px;font-weight:900;text-align:center;opacity:0;transition:.18s ease;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+    canvas{display:block;width:100%;height:auto;image-rendering:pixelated;touch-action:none}
+    .overlay{position:absolute;inset:8px;display:grid;place-items:center;background:#02050bdc;text-align:center;padding:25px;z-index:2}.overlay[hidden]{display:none}.overlay h2{margin:0 0 10px;color:var(--patch);font-size:28px}.overlay p{max-width:370px;margin:0 0 18px;color:#c4d4df;line-height:1.5}.button{font:900 16px "Courier New",monospace;border:0;border-radius:5px;background:var(--patch);color:#151000;padding:12px 20px;cursor:pointer;box-shadow:0 4px 0 #9b7400}.button:active{transform:translateY(3px);box-shadow:0 1px 0 #9b7400}
+    .controls{display:grid;grid-template-columns:repeat(3,58px);justify-content:center;gap:7px;margin:16px auto 4px}.control{height:48px;border:1px solid #35536e;background:#101c2b;color:var(--cyan);border-radius:6px;font-size:22px;font-weight:900;cursor:pointer;touch-action:manipulation}.control:active{background:#1d3550}.up{grid-column:2}.left{grid-column:1}.down{grid-column:2}.right{grid-column:3}.help{text-align:center;color:var(--muted);font-size:12px;margin:12px 0 0}.legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:15px;color:#b9cbd7;font-size:12px}.dot{display:inline-block;width:10px;height:10px;margin-right:6px}.yellow{background:var(--patch)}.red{background:var(--danger)}
+    @media(min-width:700px){.controls{display:none}.help{margin-top:14px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top"><div><h1>PATCH MAN</h1><p class="tag">Patch the network. Avoid the threats.</p></div><a class="back" href="index.html">← Portfolio</a></div>
+    <section class="cabinet" aria-label="Patch Man game">
+      <div class="scorebar">
+        <div class="stat"><span class="label">SCORE</span><span class="value" id="score">0000</span></div>
+        <div class="stat"><span class="label">PATCHES</span><span class="value" id="remaining">00</span></div>
+        <div class="stat"><span class="label">BEST</span><span class="value" id="best">0000</span></div>
+        <button class="mute" id="mute" aria-label="Mute sound" title="Mute sound">SOUND</button>
+      </div>
+      <div class="screen">
+        <canvas id="game" width="504" height="432" aria-label="Patch Man maze"></canvas>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        <div class="overlay" id="overlay"><div><h2 id="message">READY?</h2><p id="detail">Collect every patch. Avoid the roaming threats.</p><button class="button" id="start">START GAME</button></div></div>
+      </div>
+      <div class="controls" aria-label="Touch controls">
+        <button class="control up" data-dir="up" aria-label="Move up">▲</button>
+        <button class="control left" data-dir="left" aria-label="Move left">◀</button>
+        <button class="control down" data-dir="down" aria-label="Move down">▼</button>
+        <button class="control right" data-dir="right" aria-label="Move right">▶</button>
+      </div>
+      <p class="help">Arrow keys or WASD · P to pause</p>
+      <div class="legend"><span><i class="dot yellow"></i>Security patch</span><span><i class="dot red"></i>Threat</span><span>▣ Break Room</span></div>
+    </section>
+  </main>
+  <script>
+    'use strict';
+    const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+    const scoreEl=document.getElementById('score'),remainingEl=document.getElementById('remaining'),bestEl=document.getElementById('best');
+    const overlay=document.getElementById('overlay'),message=document.getElementById('message'),detail=document.getElementById('detail'),startBtn=document.getElementById('start');
+    const TILE=24,COLS=21,ROWS=18;
+    const RAW=[
+      '#####################','#.....#.......#.....#','#.###.#.#####.#.###.#','#.#.......#.......#.#','#.#.#####.#.#####.#.#','#...#.....#.....#...#','###.#.##.....##.#.###','#...#.#.......#.#...#','#.###.#.##.##.#.###.#','#................. .#','#.#####.#####.#####.#','#.......#...#.......#','###.###.#...#.###.###','#...#...#.#.#...#...#','#.###.###.#.###.###.#','#.....#.......#.....#','#.#####.#####.#####.#','#####################'];
+    const DIRS={left:{x:-1,y:0},right:{x:1,y:0},up:{x:0,y:-1},down:{x:0,y:1}};
+    const BONUS={C:{name:'EMERGENCY COFFEE',joke:'Latency reduced. Judgement remains questionable.',color:'#63e6be'},R:{name:'REBOOT IT',joke:'Have you tried turning the threat off and on again?',color:'#59f3ff'},D:{name:'RUBBER DUCK',joke:'The duck reviewed the code. No further comments.',color:'#c77dff'},E:{name:'EXECUTIVE PATCH',joke:'Priority upgraded after someone important noticed.',color:'#ffffff'}};
+    const BONUS_SPOTS=[{x:9,y:3,k:'C'},{x:10,y:6,k:'R'},{x:9,y:12,k:'D'},{x:17,y:15,k:'E'}];
+    const toast=document.getElementById('toast'),muteBtn=document.getElementById('mute');let toastTimer;
+    const BREAK_ROOM=new Set(['9,9','10,9','11,9']);
+    let map,player,enemies,ransomware,score,patches,initialPatches,bonusesLeft,power,shieldUntil,breakUsed,restStarted,bonusMode,bonusLeft,bonusEndAt,running=false,paused=false,last=0,acc=0,enemyAcc=0,ransomAcc=0,playerStep=145,enemyStep=210,ransomStep=390,nextDir=DIRS.right,dir=DIRS.right;
+    let audioCtx,musicTimer=0,musicBeat=0,muted=localStorage.getItem('patchManMuted')==='1';muteBtn.textContent=muted?'MUTED':'SOUND';
+    let best=Number(localStorage.getItem('patchManBest')||0);bestEl.textContent=pad(best);
+    function pad(n){return String(n).padStart(4,'0')}
+    function reset(){
+      map=RAW.map(r=>r.split(''));score=0;patches=0;bonusesLeft=BONUS_SPOTS.length;power=0;shieldUntil=0;breakUsed=false;restStarted=0;bonusMode=false;bonusLeft=0;playerStep=145;enemyStep=210;ransomAcc=0;dir=DIRS.right;nextDir=DIRS.right;player={x:1,y:1,px:1,py:1};
+      enemies=[{x:7,y:9,px:7,py:9,color:'#ff4f70',d:DIRS.left},{x:13,y:9,px:13,py:9,color:'#ff9f43',d:DIRS.right}];
+      ransomware={x:19,y:16,px:19,py:16,d:DIRS.up};
+      for(const b of BONUS_SPOTS)map[b.y][b.x]=b.k;
+      for(const cell of BREAK_ROOM){const [x,y]=cell.split(',').map(Number);map[y][x]=' '}
+      for(const row of map)for(const cell of row)if(cell==='.')patches++;
+      initialPatches=patches;
+      map[player.y][player.x]=' ';updateHud();draw();
+    }
+    function open(x,y){return y>=0&&y<ROWS&&x>=0&&x<COLS&&map[y][x]!=='#'}
+    function setDirection(name){if(DIRS[name])nextDir=DIRS[name]}
+    function movePlayer(){
+      player.px=player.x;player.py=player.y;
+      if(open(player.x+nextDir.x,player.y+nextDir.y))dir=nextDir;
+      if(open(player.x+dir.x,player.y+dir.y)){player.x+=dir.x;player.y+=dir.y}
+      if(map[player.y][player.x]==='.'){map[player.y][player.x]=' ';score+=10;patches--;sound('patch');increasePace();updateHud();checkObjective()}
+      else if(BONUS[map[player.y][player.x]])collectBonus(map[player.y][player.x]);
+      else if(map[player.y][player.x]==='S'){map[player.y][player.x]=' ';bonusLeft--;score+=75;showToast(bonusLeft?'AWESOME TOKEN ACQUIRED. Ego remains within policy.':'MAXIMUM AWESOME ACHIEVED.');updateHud();if(!bonusLeft)finishAwesome()}
+      handleBreakRoom();
+      collision();ransomCollision();
+    }
+    function moveEnemies(){
+      for(const e of enemies){
+        e.px=e.x;e.py=e.y;
+        const choices=Object.values(DIRS).filter(d=>open(e.x+d.x,e.y+d.y)&&!(d.x===-e.d.x&&d.y===-e.d.y));
+        const toward=choices.sort((a,b)=>distance(e,a)-distance(e,b))[Math.random()<.68?0:Math.floor(Math.random()*choices.length)];
+        if(toward)e.d=toward;else e.d={x:-e.d.x,y:-e.d.y};e.x+=e.d.x;e.y+=e.d.y;
+      }collision();
+    }
+    function moveRansomware(){if(bonusMode)return;const r=ransomware;r.px=r.x;r.py=r.y;const choices=Object.values(DIRS).filter(d=>open(r.x+d.x,r.y+d.y)&&!(d.x===-r.d.x&&d.y===-r.d.y));const next=choices.sort((a,b)=>distance(r,a)-distance(r,b))[Math.random()<.55?0:Math.floor(Math.random()*choices.length)];if(next)r.d=next;else r.d={x:-r.d.x,y:-r.d.y};r.x+=r.d.x;r.y+=r.d.y;ransomCollision()}
+    function distance(e,d){return Math.abs(e.x+d.x-player.x)+Math.abs(e.y+d.y-player.y)}
+    function collectBonus(key){const b=BONUS[key];map[player.y][player.x]=' ';bonusesLeft--;power=Math.min(power+1,4);shieldUntil=performance.now()+9000;score+=100;sound('power');showToast(`${b.name}: SHIELD ONLINE — ${b.joke}`);updateHud();checkObjective()}
+    function increasePace(){const progress=1-patches/initialPatches;playerStep=Math.max(110,145-progress*35);enemyStep=Math.max(155,210-progress*55)}
+    function inBreakRoom(){return !bonusMode&&BREAK_ROOM.has(`${player.x},${player.y}`)}
+    function handleBreakRoom(){if(!inBreakRoom()||breakUsed){restStarted=0;return}if(!restStarted){restStarted=performance.now();showToast('BREAK ROOM: Malware cannot enter. Please pretend not to check email.')}if(performance.now()-restStarted>1800){breakUsed=true;power=Math.min(power+1,4);score+=25;showToast('BURNOUT RECOVERY +1. Coffee quality remains under investigation.');updateHud()}}
+    function checkObjective(){if(!bonusMode&&patches===0&&bonusesLeft===0)startAwesomeLevel()}
+    function showToast(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+    function shielded(){return performance.now()<shieldUntil}
+    function collision(){if(inBreakRoom())return;const hit=enemies.find(e=>e.x===player.x&&e.y===player.y);if(!hit)return;if(shielded()){score+=200;sound('zap');showToast('MALWARE NEUTRALISED. Its access request has been permanently declined.');hit.x=hit.color==='#ff4f70'?7:13;hit.y=9;hit.px=hit.x;hit.py=hit.y;updateHud()}else if(power>0){power--;score+=50;sound('hit');showToast('ARMOUR ABSORBED THE HIT. Malware has been asked to reflect on its choices.');hit.x=13;hit.y=9;hit.px=13;hit.py=9;updateHud()}else end(false)}
+    function ransomCollision(){if(bonusMode||inBreakRoom()||ransomware.x!==player.x||ransomware.y!==player.y)return;running=false;stopMusic();sound('ransom');message.textContent='RANSOMWARE DEPLOYING';detail.textContent='The ransomware operator reached the analyst. Isolate affected systems, activate incident response and restore from known-good backups.';startBtn.textContent='TRY AGAIN';overlay.hidden=false}
+    function updateHud(){scoreEl.textContent=pad(score);remainingEl.textContent=String(bonusMode?bonusLeft:patches+bonusesLeft).padStart(2,'0');if(score>best){best=score;localStorage.setItem('patchManBest',best);bestEl.textContent=pad(best)}}
+    function end(won){running=false;stopMusic();sound(won?'win':'lose');message.textContent=won?'NETWORK SECURED':'SYSTEM BREACH';detail.textContent=won?`All patches deployed. Score: ${score}`:'A threat reached Patch Man. Try another route.';startBtn.textContent='PLAY AGAIN';overlay.hidden=false}
+    function loop(time){if(!running)return;const delta=Math.min(time-last,50);last=time;if(!paused){acc+=delta;enemyAcc+=delta;ransomAcc+=delta;if(bonusMode&&time>=bonusEndAt){finishAwesome();return}while(acc>=playerStep&&running){acc-=playerStep;movePlayer()}while(enemyAcc>=enemyStep&&running&&!bonusMode){enemyAcc-=enemyStep;moveEnemies()}while(ransomAcc>=ransomStep&&running&&!bonusMode){ransomAcc-=ransomStep;moveRansomware()}draw()}requestAnimationFrame(loop)}
+    function draw(){
+      ctx.fillStyle='#020407';ctx.fillRect(0,0,canvas.width,canvas.height);
+      for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){const c=map[y][x],px=x*TILE,py=y*TILE;if(c==='#'){ctx.fillStyle='#071b33';ctx.fillRect(px+2,py+2,TILE-4,TILE-4);ctx.strokeStyle='#247fc0';ctx.strokeRect(px+5,py+5,TILE-10,TILE-10);ctx.fillStyle='#59f3ff';ctx.fillRect(px+10,py+10,4,4)}else if(c==='.'){ctx.fillStyle='#ffe45e';ctx.fillRect(px+10,py+7,4,11);ctx.fillRect(px+7,py+10,10,4)}else if(c==='S'){ctx.fillStyle='#fff';ctx.font='bold 18px Courier New';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('★',px+12,py+13)}else if(BONUS[c])drawBonus(px+TILE/2,py+TILE/2,c)}
+      if(!bonusMode){for(const cell of BREAK_ROOM){const [bx,by]=cell.split(',').map(Number);ctx.fillStyle=breakUsed?'#22303b':'#194f3d';ctx.fillRect(bx*TILE+3,by*TILE+3,TILE-6,TILE-6);ctx.strokeStyle='#63e6be';ctx.strokeRect(bx*TILE+5,by*TILE+5,TILE-10,TILE-10)}ctx.fillStyle='#fff';ctx.font='bold 9px Courier New';ctx.textAlign='center';ctx.fillText('BREAK ROOM',10*TILE+12,9*TILE+15)}
+      const pa=Math.min(acc/playerStep,1),px=(player.px+(player.x-player.px)*pa)*TILE+TILE/2,py=(player.py+(player.y-player.py)*pa)*TILE+TILE/2;
+      drawPatchBot(px,py);
+      const ea=Math.min(enemyAcc/enemyStep,1);for(const e of enemies){const ex=(e.px+(e.x-e.px)*ea)*TILE+TILE/2,ey=(e.py+(e.y-e.py)*ea)*TILE+TILE/2;drawMalware(ex,ey,shielded()?'#59f3ff':e.color)}
+      if(!bonusMode){ctx.strokeStyle='#ff4f70';ctx.lineWidth=2;ctx.strokeRect(19*TILE+3,16*TILE+3,TILE-6,TILE-6);const ra=Math.min(ransomAcc/ransomStep,1),rx=(ransomware.px+(ransomware.x-ransomware.px)*ra)*TILE+TILE/2,ry=(ransomware.py+(ransomware.y-ransomware.py)*ra)*TILE+TILE/2;drawRansomware(rx,ry);ctx.fillStyle='#ff4f70';ctx.font='bold 8px Courier New';ctx.textAlign='right';ctx.fillText('INITIAL ACCESS',canvas.width-5,canvas.height-5)}
+      if(paused){ctx.fillStyle='#02050bd9';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#ffe45e';ctx.font='bold 28px Courier New';ctx.textAlign='center';ctx.fillText('PAUSED',canvas.width/2,canvas.height/2)}
+    }
+    function drawPatchBot(x,y){const colors=['#ffe45e','#63e6be','#59f3ff','#c77dff','#ffffff'];ctx.save();ctx.translate(Math.round(x),Math.round(y));if(shielded()){ctx.strokeStyle=colors[Math.max(1,power)];ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,15+Math.sin(performance.now()/90),0,Math.PI*2);ctx.stroke();ctx.fillStyle='#59f3ff22';ctx.fill()}else if(power){ctx.strokeStyle=colors[power];ctx.lineWidth=2;ctx.strokeRect(-11-power/2,-13-power/2,22+power,27+power)}ctx.fillStyle='#f7fbff';ctx.fillRect(-7,-4,14,15);ctx.fillStyle=colors[power];ctx.fillRect(-9,0,3,9);ctx.fillRect(6,0,3,9);ctx.fillStyle='#e3ad7b';ctx.fillRect(-5,-11,10,8);ctx.fillStyle='#39291f';ctx.fillRect(-6,-12,12,3);ctx.fillStyle='#07111d';ctx.fillRect(-3,-8,2,2);ctx.fillRect(2,-8,2,2);ctx.fillStyle=colors[power];ctx.fillRect(-2,1,4,6);ctx.fillStyle='#17202b';ctx.fillRect(-6,11,5,3);ctx.fillRect(1,11,5,3);ctx.restore()}
+    function drawBonus(x,y,key){const b=BONUS[key],pulse=1+Math.sin(performance.now()/140)*.12;ctx.save();ctx.translate(x,y);ctx.scale(pulse,pulse);ctx.fillStyle=b.color;ctx.fillRect(-8,-8,16,16);ctx.fillStyle='#07111d';ctx.font='bold 11px Courier New';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(key,0,1);ctx.restore()}
+    function drawMalware(x,y,color){ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.fillStyle=color;ctx.fillRect(-8,-7,16,13);ctx.fillRect(-11,-3,3,8);ctx.fillRect(8,-3,3,8);ctx.fillRect(-6,6,4,4);ctx.fillRect(2,6,4,4);ctx.fillRect(-7,-10,3,3);ctx.fillRect(4,-10,3,3);ctx.fillRect(-10,-12,3,3);ctx.fillRect(7,-12,3,3);ctx.fillStyle='#07111d';ctx.fillRect(-5,-3,3,3);ctx.fillRect(2,-3,3,3);ctx.fillRect(-3,2,6,2);ctx.restore()}
+    function drawRansomware(x,y){ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.fillStyle='#9c1b38';ctx.fillRect(-10,-8,20,17);ctx.fillStyle='#ff4f70';ctx.fillRect(-7,-12,14,8);ctx.fillStyle='#07111d';ctx.fillRect(-4,-9,8,7);ctx.fillStyle='#fff';ctx.font='bold 11px monospace';ctx.textAlign='center';ctx.fillText('$',0,5);ctx.restore()}
+    function startAwesomeLevel(){bonusMode=true;bonusLeft=12;score+=500;playerStep=115;map=Array.from({length:ROWS},(_,y)=>Array.from({length:COLS},(_,x)=>x===0||y===0||x===COLS-1||y===ROWS-1?'#':' '));const spots=[[2,2],[6,2],[10,2],[14,2],[18,2],[4,7],[10,7],[16,7],[2,14],[7,14],[13,14],[18,14]];for(const [x,y] of spots)map[y][x]='S';player={x:10,y:9,px:10,py:9};enemies=[];bonusEndAt=performance.now()+20000;showToast('YOU ARE AWESOME BONUS: Collect the stars. There is no malware. You have earned this.');updateHud()}
+    function finishAwesome(){score+=bonusLeft===0?1000:(12-bonusLeft)*100;updateHud();end(true);message.textContent='YOU ARE AWESOME';detail.textContent=`Network secured, burnout managed and ${12-bonusLeft} awesome tokens collected. Final score: ${score}`}
+    function ensureAudio(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}
+    function tone(freq,duration=.08,volume=.035,delay=0){if(muted)return;ensureAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime+delay;o.type='square';o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(volume,t);g.gain.exponentialRampToValueAtTime(.001,t+duration);o.connect(g).connect(audioCtx.destination);o.start(t);o.stop(t+duration)}
+    function sound(kind){const notes={patch:[660],power:[440,660,880],zap:[900,480],hit:[180],lose:[220,165,110],ransom:[140,95,65],win:[523,659,784,1047]}[kind]||[];notes.forEach((n,i)=>tone(n,.1,.04,i*.07))}
+    function startMusic(){stopMusic();if(muted)return;ensureAudio();const seq=[110,165,220,165,131,196,262,196];musicTimer=setInterval(()=>{if(running&&!paused)tone(seq[musicBeat++%seq.length],.09,.018)},230)}
+    function stopMusic(){clearInterval(musicTimer);musicTimer=0}
+    function toggleMute(){muted=!muted;localStorage.setItem('patchManMuted',muted?'1':'0');muteBtn.textContent=muted?'MUTED':'SOUND';muteBtn.setAttribute('aria-label',muted?'Unmute sound':'Mute sound');if(muted)stopMusic();else if(running)startMusic()}
+    function start(){ensureAudio();reset();overlay.hidden=true;running=true;paused=false;last=performance.now();acc=0;enemyAcc=0;ransomAcc=0;startMusic();requestAnimationFrame(loop)}
+    function togglePause(){if(!running)return;paused=!paused;last=performance.now();draw()}
+    addEventListener('keydown',e=>{const keys={ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right',ArrowUp:'up',w:'up',W:'up',ArrowDown:'down',s:'down',S:'down'};if(keys[e.key]){e.preventDefault();setDirection(keys[e.key])}if(e.key==='p'||e.key==='P')togglePause()});
+    document.querySelectorAll('[data-dir]').forEach(b=>b.addEventListener('pointerdown',()=>setDirection(b.dataset.dir)));startBtn.addEventListener('click',start);muteBtn.addEventListener('click',toggleMute);reset();
+  </script>
+</body>
+</html>
