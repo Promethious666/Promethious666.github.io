@@ -54,7 +54,7 @@
     .dark-intro { color:var(--muted); }
     .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
     .card { padding:24px; border:1px solid #cbd8e0; border-radius:12px; background:white; }
-    .card h3 { margin:5px 0 8px; font-size:19px; }
+    .card h3 { margin:5px 0 8px; font-size:19px; color:#172936; }
     .card p { color:#607381; margin:0; }
     .number { color:var(--blue,#0877a8); font-weight:900; font-size:12px; }
     .timeline { display:grid; gap:0; margin-top:35px; }
@@ -148,13 +148,19 @@
   <section id="projects">
     <div class="wrap">
       <h2>Projects</h2>
-      <p class="section-intro dark-intro">Small interactive projects exploring cyber security through practical, approachable design.</p>
+      <p class="section-intro dark-intro">Tools and projects built around the realities of security analysis.</p>
       <div class="cards">
         <article class="card">
           <div class="number">ARCADE 01</div>
           <h3>Patch Man</h3>
           <p>Navigate the network, collect every security patch and stay clear of roaming threats in this original retro maze game.</p>
           <div class="actions"><a class="button" href="patch-man.html">Play Patch Man</a></div>
+        </article>
+        <article class="card">
+          <div class="number">DIRECTORY 02</div>
+          <h3>The Analyst Index</h3>
+          <p>Compare 111 open-source security tools by workflow, interaction risk, data handling and setup effort.</p>
+          <div class="actions"><a class="button" href="the-analyst-index/">Explore the Index</a></div>
         </article>
       </div>
     </div>
