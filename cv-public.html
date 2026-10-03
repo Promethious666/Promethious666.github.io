@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adam Brown | Cyber Threat Intelligence Senior Analyst</title>
   <style>
-    :root { --ink:#14202b; --navy:#082f49; --blue:#0369a1; --muted:#526171; --line:#dbe3ea; --paper:#fff; }
+    :root { --ink:#171c20; --navy:#171c20; --blue:#ae4022; --muted:#5c6369; --line:#d8d8d0; --paper:#fffdf9; }
     * { box-sizing:border-box; }
-    body { margin:0; background:#edf2f6; color:var(--ink); font:14px/1.42 Arial, sans-serif; }
+    body { margin:0; background:#eeeee8; color:var(--ink); font:14px/1.5 "Segoe UI",Arial,sans-serif; }
     main { width:min(210mm,100%); min-height:297mm; margin:16px auto; padding:15mm 16mm; background:var(--paper); box-shadow:0 8px 30px #0002; }
     header { border-bottom:3px solid var(--blue); padding-bottom:10px; margin-bottom:12px; }
-    h1 { margin:0; color:var(--navy); font-size:31px; letter-spacing:-.5px; }
+    h1 { margin:0; color:var(--navy); font-size:38px; letter-spacing:-1.5px; }
     .headline { margin:3px 0 7px; color:var(--blue); font-size:16px; font-weight:700; }
     .contact { color:var(--muted); font-size:12.5px; }
     h2 { margin:13px 0 6px; color:var(--navy); font-size:16px; text-transform:uppercase; letter-spacing:.7px; border-bottom:1px solid var(--line); padding-bottom:3px; }
@@ -22,7 +22,11 @@
     .skills span::before { content:"•"; color:var(--blue); margin-right:7px; }
     .certs { columns:2; column-gap:24px; }
     .certs div { break-inside:avoid; margin:2px 0; }
-    a { color:var(--blue); text-decoration:none; }
+    a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
+    a:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+    .project { break-inside:avoid; border-left:2px solid var(--line); padding-left:12px; margin-bottom:12px; }
+    .project h3 { margin-top:0; }
+    .back-link { display:inline-block; margin-top:8px; font-size:12px; }
     @media(max-width:650px){main{margin:0;padding:28px 20px}.skills{grid-template-columns:1fr}.certs{columns:1}}
     @media print { @page { size:A4; margin:0; } body { background:#fff; } main { margin:0; box-shadow:none; width:210mm; min-height:297mm; } a { color:inherit; } }
   </style>
@@ -33,6 +37,7 @@
     <h1>Adam Brown</h1>
     <div class="headline">Cyber Threat Intelligence Senior Analyst | Intelligence Analysis, OSINT &amp; Security Operations</div>
     <div class="contact">United Kingdom · <a href="https://www.linkedin.com/in/swhoami/">LinkedIn</a></div>
+    <a class="back-link" href="index.html">View portfolio and projects ↗</a>
   </header>
   <section><h2>Professional profile</h2><p>Cyber threat intelligence senior analyst with experience across threat intelligence, OSINT, incident response, threat hunting and detection engineering in complex, multi-vendor environments. Combines intelligence analysis and hands-on security operations with governance, stakeholder reporting and analyst development, translating technical findings into practical risk decisions.</p></section>
   <section>
@@ -44,6 +49,7 @@
       <span>Security automation, APIs and data ingestion</span><span>Cloud and multi-vendor environments</span>
       <span>Playbooks, dashboards and reporting</span><span>ISO 27001, NIST, CIS and PCI DSS</span>
     </div>
+    <p><strong>AI and operational efficiency:</strong> Exploring and evaluating AI-assisted workflows to reduce repetitive tasks, support investigations and improve security operations, with a focus on accuracy and data protection.</p>
   </section>
   <section>
     <h2>Professional experience</h2>
@@ -59,6 +65,12 @@
     <ul><li>Monitored and investigated threats in a global 24×7 SOC using SIEM, endpoint and network-security platforms.</li><li>Used SIEM dashboards, correlation and alert logic to support detection, triage and incident response.</li><li>Produced investigation reports and response playbooks while coordinating analysts, apprentices and operational stakeholders.</li></ul>
     <h3>Earlier career</h3><div class="meta">Intrinsic Technology, Maintel, Tesco and Asda · 2007–2018</div>
     <p>Progressed through network operations, cyber security consulting, service assurance, technical leadership and physical security roles, building a practical foundation in investigations, customer communication, risk management and operational resilience.</p>
+  </section>
+  <section>
+    <h2>Selected projects</h2>
+    <div class="project"><h3>CTI ATT&amp;CK Vector</h3><p>A cyber threat intelligence publication covering emerging threats, adversary activity, cyber security developments and AI security, with source links and practical context for defenders.</p><p><a href="https://www.linkedin.com/company/cti-attack-vector/">Read CTI ATT&amp;CK Vector on LinkedIn</a></p></div>
+    <div class="project"><h3>The Analyst Index</h3><p>A directory of 111 open-source security tools, organised by workflow, interaction risk, data handling and setup effort.</p><p><a href="https://promethious666.github.io/the-analyst-index/">Explore The Analyst Index</a></p></div>
+    <div class="project"><h3>Patch Man</h3><p>An original neon maze game built around collecting security patches and containing roaming threats.</p><p><a href="https://promethious666.github.io/patch-man.html">Play Patch Man</a></p></div>
   </section>
   <section>
     <h2>Credentials and professional development</h2>

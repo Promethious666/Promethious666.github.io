@@ -1,184 +1,240 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; connect-src 'none'; img-src 'self' data:; media-src 'none'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; connect-src 'none'; img-src 'self' data:; media-src 'none'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Adam Brown, Cyber Threat Intelligence Senior Analyst specialising in intelligence analysis, OSINT, detection engineering and security operations.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Adam Brown, Cyber Threat Intelligence Senior Analyst. Threat intelligence, OSINT, incident response, detection engineering and security operations, with practical projects for defenders.">
   <link rel="canonical" href="https://promethious666.github.io/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Cyber Security Portfolio | Adam Brown">
-  <meta property="og:description" content="Threat intelligence, detection engineering, incident response, security automation and AI-agent security.">
+  <meta property="og:title" content="Adam Brown | Cyber Security Portfolio">
+  <meta property="og:description" content="Threat intelligence, incident response, detection engineering and security operations. Explore CTI ATT&CK Vector, The Analyst Index and Patch Man.">
   <meta property="og:url" content="https://promethious666.github.io/">
-  <meta property="og:image" content="https://promethious666.github.io/portfolio-linkedin-feature.png">
-  <meta property="og:image:width" content="1734">
-  <meta property="og:image:height" content="907">
+  <meta property="og:image" content="https://promethious666.github.io/portfolio-linkedin-feature.png?v=20261003">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Cyber security analyst coordinating intelligence, detection and response">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cyber Security Portfolio | Adam Brown">
-  <meta name="twitter:description" content="Threat intelligence, detection engineering, incident response, security automation and AI-agent security.">
-  <meta name="twitter:image" content="https://promethious666.github.io/portfolio-linkedin-feature.png">
+  <meta name="twitter:title" content="Adam Brown | Cyber Security Portfolio">
+  <meta name="twitter:description" content="Threat intelligence, incident response, detection engineering and security operations. Practical projects for defenders.">
+  <meta name="twitter:image" content="https://promethious666.github.io/portfolio-linkedin-feature.png?v=20261003">
   <title>Adam Brown | Cyber Security Portfolio</title>
   <style>
-    :root {
-      --night:#071521; --panel:#0d2232; --line:#1f3d50; --white:#f4f8fb;
-      --muted:#9fb3c1; --cyan:#52d3f6; --green:#63e6be; --paper:#eaf1f5;
-    }
+    :root { color-scheme:light; --paper:#f6f4ef; --ink:#171c20; --muted:#5c6369; --line:#d8d8d0; --accent:#ae4022; --dark:#13191d; --soft:#acb6bd; --mint:#c2edcd; }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--white); background:var(--night); font:16px/1.65 Inter,Segoe UI,Arial,sans-serif; }
-    a { color:inherit; }
-    nav { position:sticky; top:0; z-index:4; backdrop-filter:blur(14px); background:#071521dc; border-bottom:1px solid #ffffff12; }
-    .nav-inner { max-width:1120px; margin:auto; padding:15px 24px; display:flex; justify-content:space-between; align-items:center; }
-    .brand { font-weight:800; letter-spacing:.4px; text-decoration:none; }
-    .nav-links { display:flex; gap:20px; font-size:14px; color:var(--muted); }
-    .nav-links a { text-decoration:none; }
-    .nav-links a:hover,.nav-links a:focus { color:var(--cyan); }
-    .hero { max-width:1120px; margin:auto; min-height:680px; padding:110px 24px 80px; display:grid; grid-template-columns:1.45fr .8fr; gap:70px; align-items:center; }
-    .eyebrow { color:var(--green); font-weight:800; letter-spacing:1.5px; text-transform:uppercase; font-size:13px; }
-    h1 { margin:12px 0 20px; font-size:clamp(44px,7vw,78px); line-height:1.02; letter-spacing:-3px; }
-    h1 span { color:var(--cyan); }
-    .lede { max-width:720px; color:#bed0dc; font-size:20px; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-    .button { display:inline-block; padding:12px 18px; border-radius:7px; border:1px solid var(--cyan); color:var(--night); background:var(--cyan); text-decoration:none; font-weight:800; }
-    .button.secondary { color:var(--white); background:transparent; border-color:var(--line); }
-    .signal { border:1px solid var(--line); background:linear-gradient(145deg,#102c3e,#091b29); border-radius:18px; padding:26px; box-shadow:0 30px 80px #0006; }
-    .signal-title { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:1px; }
-    .signal strong { display:block; font-size:25px; margin:8px 0 16px; }
-    .signal-row { display:flex; justify-content:space-between; padding:10px 0; border-top:1px solid var(--line); color:#c8d6df; }
-    section { padding:80px 24px; }
-    .light { background:var(--paper); color:#172936; }
-    .wrap { max-width:1120px; margin:auto; }
-    h2 { margin:0 0 12px; font-size:36px; line-height:1.15; letter-spacing:-1px; }
-    .section-intro { max-width:750px; margin:0 0 34px; color:#607381; }
-    .dark-intro { color:var(--muted); }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { padding:24px; border:1px solid #cbd8e0; border-radius:12px; background:white; }
-    .card h3 { margin:5px 0 8px; font-size:19px; color:#172936; }
-    .card p { color:#607381; margin:0; }
-    .number { color:var(--blue,#0877a8); font-weight:900; font-size:12px; }
-    .timeline { display:grid; gap:0; margin-top:35px; }
-    .role { display:grid; grid-template-columns:180px 1fr; gap:30px; border-top:1px solid var(--line); padding:24px 0; }
-    .role .date { color:var(--green); font-size:13px; font-weight:800; }
-    .role h3 { margin:0 0 4px; }
-    .role p { margin:0; color:var(--muted); }
-    .cert-list { display:flex; flex-wrap:wrap; gap:10px; }
-    .cert-list span { border:1px solid #c9d6de; background:white; padding:9px 13px; border-radius:999px; font-size:14px; }
-    .contact-box { text-align:center; max-width:800px; margin:auto; padding:45px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,#102c3e,#091b29); }
-    footer { color:#79909f; text-align:center; padding:28px; border-top:1px solid #ffffff10; font-size:13px; }
-    @media(max-width:820px) {
-      .hero { grid-template-columns:1fr; padding-top:80px; }
-      .signal { max-width:520px; }
-      .cards { grid-template-columns:1fr; }
-      .role { grid-template-columns:1fr; gap:5px; }
-      .nav-links { display:none; }
-      h1 { letter-spacing:-2px; }
+    html { scroll-behavior:smooth; scroll-padding-top:110px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 "Segoe UI",Arial,sans-serif; }
+    a { color:inherit; text-decoration-thickness:1px; text-underline-offset:5px; }
+    a:focus-visible,summary:focus-visible { outline:3px solid var(--accent); outline-offset:5px; }
+    svg { display:block; max-width:100%; }
+    .wrap { width:min(1180px,calc(100% - 64px)); margin-inline:auto; }
+    .mono { font-family:Consolas,"Courier New",monospace; font-size:11px; text-transform:uppercase; letter-spacing:1.6px; }
+    .skip { position:absolute; left:20px; top:-100px; z-index:20; background:var(--ink); color:white; padding:12px 18px; }
+    .skip:focus { top:12px; }
+    .site-nav { position:sticky; top:0; z-index:5; background:#f6f4eff5; border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    .nav-inner { min-height:80px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-size:14px; font-weight:750; letter-spacing:.7px; }
+    .brand-mark { display:grid; place-items:center; width:36px; height:36px; border:1px solid var(--ink); font-size:12px; letter-spacing:-.5px; }
+    .nav-links { display:flex; align-items:center; gap:27px; }
+    .nav-links a { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-links .nav-contact { color:var(--ink); border-bottom:1px solid var(--ink); }
+    .hero { position:relative; overflow:hidden; padding:84px 0 60px; }
+    .hero-layout { display:grid; grid-template-columns:1.15fr 1fr; align-items:center; gap:58px; }
+    .eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:28px; color:var(--accent); }
+    .eyebrow::before { content:""; height:7px; width:7px; background:currentColor; border-radius:50%; flex-shrink:0; }
+    h1 { font-size:clamp(66px,7.6vw,108px); line-height:.95; font-weight:750; letter-spacing:-7px; margin:0 0 28px; }
+    h1 span { color:var(--accent); }
+    .hero-subtitle { font-size:clamp(23px,2.4vw,31px); letter-spacing:-1px; line-height:1.25; max-width:450px; margin:0 0 20px; font-weight:500; }
+    .lede { color:var(--muted); font-size:16px; max-width:525px; margin:0; }
+    .actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px 24px; margin-top:30px; }
+    .button { display:inline-flex; align-items:center; justify-content:space-between; gap:25px; padding:14px 20px; min-height:49px; background:var(--ink); color:var(--paper); text-decoration:none; font-size:14px; font-weight:600; border:1px solid var(--ink); transition:background .2s,transform .2s; }
+    .button:hover { background:var(--accent); border-color:var(--accent); transform:translateY(-2px); }
+    .text-link { font-size:14px; font-weight:600; }
+    .text-link:hover { color:var(--accent); }
+    .hero-notes { margin-top:40px; padding-top:20px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:10px 25px; color:var(--muted); }
+    .intelligence-map { background:var(--dark); color:var(--paper); padding:24px; border:1px solid #2e383f; position:relative; box-shadow:16px 16px 0 #e7e5dd; }
+    .map-heading { display:flex; align-items:center; justify-content:space-between; padding-bottom:18px; border-bottom:1px solid #ffffff22; color:var(--soft); }
+    .map-heading b { color:var(--mint); font-size:10px; font-weight:400; }
+    .map-svg { width:100%; height:auto; margin:20px 0 6px; }
+    .map-footer { display:flex; justify-content:space-between; gap:15px; padding-top:18px; border-top:1px solid #ffffff22; color:var(--soft); letter-spacing:.6px; }
+    .map-footer strong { color:var(--mint); font-weight:400; }
+    .focus-strip { border-block:1px solid var(--line); margin-top:74px; padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:15px; color:var(--muted); }
+    .focus-strip span:first-child { color:var(--accent); }
+    .focus-strip i { width:4px; height:4px; background:#a1a8a7; border-radius:50%; }
+    section { padding:80px 0; }
+    .section-head { display:grid; grid-template-columns:220px 1fr; gap:30px; align-items:start; margin-bottom:40px; }
+    .section-label { display:flex; align-items:center; gap:15px; color:var(--muted); padding-top:10px; }
+    .section-label span { color:var(--accent); }
+    h2 { font-size:clamp(31px,4vw,48px); line-height:1.12; letter-spacing:-1.8px; font-weight:650; margin:0 0 18px; }
+    .section-intro { max-width:680px; margin:0; color:var(--muted); }
+    .projects { background:var(--dark); color:var(--paper); }
+    .projects .section-label,.projects .section-intro { color:var(--soft); }
+    .projects .section-label span { color:var(--mint); }
+    .project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+    .project { min-width:0; border:1px solid #364047; background:#1b2328; display:flex; flex-direction:column; transition:border-color .2s,transform .2s; }
+    .project:hover { border-color:#8d999d; transform:translateY(-4px); }
+    .project-visual { height:auto; aspect-ratio:1200/630; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:0; border-bottom:1px solid #364047; background:#151c21; }
+    .project-visual img { display:block; width:100%; height:100%; object-fit:cover; }
+    .project-copy { padding:27px; display:flex; flex-direction:column; flex:1; }
+    .project .mono { color:var(--mint); letter-spacing:1.1px; }
+    .project h3 { font-size:25px; font-weight:600; letter-spacing:-.8px; line-height:1.15; margin:16px 0; }
+    .project h3 span { color:#ff6767; }
+    .project p { color:#b7c1c6; font-size:14px; margin:0 0 26px; }
+    .project a { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-top:auto; padding-top:17px; border-top:1px solid #364047; text-decoration:none; font-size:13px; font-weight:600; }
+    .project a:hover { color:var(--mint); }
+    .project a:focus-visible { outline-color:var(--mint); }
+    .project-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px; }
+    .project-tags span { padding:3px 8px; border:1px solid #435057; color:#c2cbd0; font-size:10px; }
+    .capabilities { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+    .capability { padding:30px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .capability .mono { color:var(--accent); }
+    .capability h3 { font-size:19px; line-height:1.3; font-weight:600; letter-spacing:-.4px; margin:20px 0 12px; }
+    .capability p { color:var(--muted); font-size:14px; margin:0; }
+    .capability-wide { grid-column:1 / -1; display:grid; grid-template-columns:1fr 2fr; column-gap:36px; background:#e8eee6; }
+    .capability-wide h3 { grid-column:1; margin:12px 0 0; }
+    .capability-wide p { grid-column:2; grid-row:1 / 3; align-self:center; }
+    .experience { background:#eeeee8; border-block:1px solid var(--line); }
+    .timeline { margin-left:250px; border-left:1px solid #bec4c1; padding-left:32px; }
+    .role { position:relative; padding:0 0 32px; margin-bottom:32px; border-bottom:1px solid var(--line); }
+    .role:last-child { margin-bottom:0; padding-bottom:0; border-bottom:0; }
+    .role::before { content:""; position:absolute; left:-37px; top:6px; width:9px; height:9px; background:#858f8e; border-radius:50%; box-shadow:0 0 0 5px #eeeee8; }
+    .role:first-child::before { background:var(--accent); }
+    .role-meta { display:flex; justify-content:space-between; gap:20px; margin-bottom:9px; color:var(--muted); }
+    .role:first-child .role-meta { color:var(--accent); }
+    .role h3 { font-size:22px; font-weight:600; letter-spacing:-.6px; line-height:1.3; margin:0 0 10px; }
+    .role p { font-size:14px; color:var(--muted); margin:0; max-width:760px; }
+    .credentials-layout { display:grid; grid-template-columns:220px 1fr; gap:30px; }
+    .credential-group h3 { font-size:12px; color:var(--accent); font-weight:500; margin:0 0 18px; letter-spacing:1px; text-transform:uppercase; }
+    .credential-group + .credential-group { margin-top:30px; }
+    .cert-list { display:flex; flex-wrap:wrap; gap:9px; }
+    .cert-list span { padding:9px 13px; background:#fffdf9; border:1px solid var(--line); font-size:13px; }
+    .contact { padding-top:0; }
+    .contact-box { background:var(--ink); color:var(--paper); padding:50px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+    .contact-box h2 { margin:0 0 12px; }
+    .contact-box p { color:var(--soft); font-size:14px; margin:0; max-width:470px; }
+    .contact-box .mono { color:var(--mint); margin:0 0 20px; }
+    .contact-box .button { background:var(--mint); border-color:var(--mint); color:var(--ink); white-space:nowrap; }
+    .contact-box .button:hover { background:white; border-color:white; }
+    .contact-box .actions { margin-top:0; flex-direction:column; align-items:stretch; }
+    .contact-box .text-link { color:var(--soft); text-align:center; }
+    .contact-box a:focus-visible { outline-color:var(--mint); }
+    footer { padding:28px 0; border-top:1px solid var(--line); color:var(--muted); }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .footer-inner p { font-size:12px; margin:0; }
+    .footer-inner a { font-size:12px; }
+    @media (max-width:1000px) { .hero-layout { gap:32px; } h1 { letter-spacing:-5px; } .nav-links { gap:17px; } .section-head,.credentials-layout { grid-template-columns:160px 1fr; } .timeline { margin-left:190px; } .project-copy { padding:21px; } .focus-strip { letter-spacing:.5px; } }
+    @media (max-width:760px) {
+      html { scroll-padding-top:130px; } .wrap { width:calc(100% - 40px); } .nav-inner { flex-direction:column; align-items:flex-start; padding:14px 0; gap:12px; } .brand-mark { width:28px; height:28px; } .nav-links { width:100%; gap:0; justify-content:space-between; } .nav-links a { font-size:12px; }
+      .hero { padding-top:45px; } .hero-layout { grid-template-columns:1fr; gap:42px; } h1 { font-size:clamp(62px,15vw,90px); letter-spacing:-4.5px; } .eyebrow { font-size:9px; letter-spacing:1px; margin-bottom:24px; } .hero-subtitle { font-size:28px; } .intelligence-map { max-width:500px; box-shadow:8px 8px 0 #e7e5dd; } .focus-strip { margin-top:45px; flex-wrap:wrap; justify-content:flex-start; gap:12px 18px; font-size:10px; } .focus-strip i { display:none; }
+      section { padding:58px 0; } .section-head,.credentials-layout { grid-template-columns:1fr; gap:15px; } .section-label { padding-top:0; } h2 { letter-spacing:-1px; } .project-grid { grid-template-columns:1fr; } .project-visual { height:auto; } .project-copy { padding:26px; } .project h3 { font-size:28px; } .capabilities { grid-template-columns:repeat(2,minmax(0,1fr)); } .capability { padding:23px; } .timeline { margin-left:5px; padding-left:25px; } .role::before { left:-30px; } .role-meta { font-size:10px; letter-spacing:1px; } .role h3 { font-size:20px; } .contact-box { flex-direction:column; align-items:flex-start; padding:32px; gap:28px; } .contact-box .actions { width:100%; } .footer-inner { flex-wrap:wrap; }
     }
+    @media (max-width:760px) { .capability-wide { display:block; } .capability-wide p { margin-top:12px; } }
+    @media (max-width:420px) { .capabilities { grid-template-columns:1fr; } .map-heading,.map-footer { font-size:9px; letter-spacing:.5px; } .intelligence-map { padding:18px; } .nav-links a { font-size:11px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; } }
+    @media print { .site-nav,.skip,.intelligence-map,.project-visual,.focus-strip { display:none; } body,section,.contact-box,.projects { background:white; color:black; } .wrap { width:100%; } section,.hero { padding:16px 0; } .hero-layout { display:block; } h1 { font-size:48px; } .hero-notes { margin-top:15px; } .project-grid,.capabilities { display:block; } .project,.capability { break-inside:avoid; border:1px solid #aaa; background:white; margin-bottom:12px; padding:12px; } .project-copy { padding:0; } .project p,.project .mono,.projects .section-intro,.project-tags span,.project h3 span { color:black; } .project-tags span { border-color:#aaa; } .section-head,.credentials-layout { display:block; } .timeline { margin-left:5px; } .contact-box { padding:18px; border:1px solid #aaa; } .button { background:white; color:black; border-color:#aaa; } .project a { border-color:#aaa; } }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a class="brand" href="#top">ADAM BROWN</a>
-      <div class="nav-links">
-        <a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
-      </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">AB</span>ADAM BROWN</a>
+      <div class="nav-links"><a href="#projects">Projects</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a class="nav-contact" href="#contact">Contact ↗</a></div>
     </div>
   </nav>
-
-  <header class="hero" id="top">
-    <div>
-      <div class="eyebrow">Cyber Threat Intelligence Senior Analyst</div>
-      <h1>Turning threat signals into <span>decisive action.</span></h1>
-      <p class="lede">I specialise in threat intelligence, OSINT, detection engineering and security operations across complex multi-vendor environments, building practical controls, leading investigations and helping analysts make better decisions under pressure.</p>
-      <div class="actions">
-        <a class="button" href="#expertise">View expertise</a>
-        <a class="button secondary" href="https://www.linkedin.com/in/swhoami/">LinkedIn profile</a>
-        <a class="button secondary" href="cv-public.html">View public CV</a>
+  <main id="main">
+    <header class="hero" id="top">
+      <div class="wrap">
+        <div class="hero-layout">
+          <div>
+            <div class="eyebrow mono">Cyber Threat Intelligence Senior Analyst</div>
+            <h1>Adam<br>Brown<span>.</span></h1>
+            <p class="hero-subtitle">Turning threat signals<br>into decisive action.</p>
+            <p class="lede">I specialise in threat intelligence, OSINT, incident response, detection engineering and security operations. I lead complex investigations, coordinate containment and turn findings into practical defensive action.</p>
+            <div class="actions"><a class="button" href="#projects">Explore my projects <span aria-hidden="true">↗</span></a><a class="text-link" href="cv-public.html">View public CV</a></div>
+            <div class="hero-notes mono"><span>Intelligence analysis</span><span>Security engineering</span><span>Incident leadership</span></div>
+          </div>
+          <aside class="intelligence-map" aria-label="My approach: evaluate sources, add context, inform detection and response">
+            <div class="map-heading mono"><span>Intelligence → Defence</span><b>Operational focus</b></div>
+            <svg class="map-svg" viewBox="0 0 440 375" aria-hidden="true" focusable="false">
+              <defs><pattern id="map-grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#263137" stroke-width=".6"/></pattern></defs>
+              <rect width="440" height="375" fill="url(#map-grid)"/>
+              <g fill="none" stroke="#38464e"><circle cx="220" cy="182" r="132"/><circle cx="220" cy="182" r="92" stroke-dasharray="3 9"/><path d="M220 18V346M45 182H395"/></g>
+              <g fill="none" stroke="#789287" stroke-width="1.4"><path d="M73 83L170 143M220 57V120M367 83L270 143M73 285L170 223M367 285L270 223M220 244V325"/></g>
+              <path d="M220 112L290 182L220 252L150 182Z" fill="#253831" stroke="#c2edcd" stroke-width="1.5"/>
+              <path d="M220 130L272 182L220 234L168 182Z" fill="none" stroke="#c2edcd" stroke-opacity=".25"/>
+              <g font-family="Consolas,monospace" text-anchor="middle" fill="#c2edcd"><text x="220" y="177" font-size="12" letter-spacing="2">THREAT</text><text x="220" y="195" font-size="12" letter-spacing="2">INTELLIGENCE</text></g>
+              <g fill="#13191d" stroke="#60716a"><rect x="11" y="58" width="124" height="49"/><rect x="158" y="15" width="124" height="42"/><rect x="305" y="58" width="124" height="49"/><rect x="11" y="260" width="124" height="49"/><rect x="305" y="260" width="124" height="49"/><rect x="158" y="325" width="124" height="36"/></g>
+              <g font-family="Consolas,monospace" font-size="10" letter-spacing="1" fill="#d7dfda" text-anchor="middle"><text x="73" y="87">SOURCE EVALUATION</text><text x="220" y="41">OSINT</text><text x="367" y="87">ADVERSARY CONTEXT</text><text x="73" y="289">THREAT HUNTING</text><text x="367" y="289">DETECTION</text><text x="220" y="348">RESPONSE</text></g>
+              <g fill="#ff805b"><circle cx="147" cy="129" r="3"/><circle cx="293" cy="129" r="3"/><circle cx="147" cy="237" r="3"/><circle cx="293" cy="237" r="3"/></g>
+            </svg>
+            <div class="map-footer mono"><span>Signal / Context / Action</span><strong>Defender-led</strong></div>
+          </aside>
+        </div>
+        <div class="focus-strip mono"><span>Areas of focus</span><i aria-hidden="true"></i><span>Threat intelligence</span><i aria-hidden="true"></i><span>Detection engineering</span><i aria-hidden="true"></i><span>Security operations</span><i aria-hidden="true"></i><span>AI-agent security</span></div>
       </div>
-    </div>
-    <aside class="signal" aria-label="Professional focus">
-      <div class="signal-title">Core expertise</div>
-      <strong>Threat-led Security Operations</strong>
-      <div class="signal-row"><span>OSINT &amp; threat intelligence</span></div>
-      <div class="signal-row"><span>Detection engineering</span></div>
-      <div class="signal-row"><span>Incident leadership</span></div>
-      <div class="signal-row"><span>AI-agent security</span></div>
-    </aside>
-  </header>
-
-  <section class="light" id="expertise">
-    <div class="wrap">
-      <h2>Security capability with operational depth</h2>
-      <p class="section-intro">A career spanning frontline investigations, security engineering, governance and analyst leadership provides both technical depth and an understanding of how controls perform in real organisations.</p>
-      <div class="cards">
-        <article class="card"><div class="number">01</div><h3>Multi-vendor security operations</h3><p>Operational experience across SIEM, endpoint, network, cloud, email, web, identity and remote-access security technologies.</p></article>
-        <article class="card"><div class="number">02</div><h3>Threat intelligence &amp; OSINT</h3><p>Intelligence-led hunting, IOC lifecycle management, source evaluation, confidence handling and translation into defensible detections.</p></article>
-        <article class="card"><div class="number">03</div><h3>Incident response</h3><p>Complex investigation leadership, containment coordination, root-cause analysis, remediation advice and clear reporting for technical and senior audiences.</p></article>
-        <article class="card"><div class="number">04</div><h3>Detection engineering</h3><p>Detection design, rule tuning, false-positive reduction, endpoint and identity coverage, validation and continuous improvement.</p></article>
-        <article class="card"><div class="number">05</div><h3>Security engineering</h3><p>Identity, remote access, endpoint hardening, cloud controls, APIs, automation and enterprise network, web and email protections.</p></article>
-        <article class="card"><div class="number">06</div><h3>Governance and leadership</h3><p>ISO 27001, NIST, CIS and PCI DSS alignment, audit evidence, supplier assurance, management information and analyst development.</p></article>
+    </header>
+    <section class="projects" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head"><div class="section-label mono"><span>01 /</span> Selected projects</div><div><h2 id="projects-title">Built around the<br>work of defenders.</h2><p class="section-intro">Threat intelligence, practical research tools and a different way to think about security awareness.</p></div></div>
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-visual"><img src="cti-vector-linkedin-feature.png?v=20261003" width="1200" height="630" loading="lazy" alt=""></div>
+            <div class="project-copy"><div class="mono">Threat intelligence / Publication</div><h3>CTI <span>ATT&amp;CK</span> Vector</h3><p>A cyber threat intelligence publication covering emerging threats, adversary activity, cyber security developments and AI security, with source links and practical context for defenders.</p><div class="project-tags"><span>CTI</span><span>Cyber security</span><span>AI security</span></div><a href="https://www.linkedin.com/company/cti-attack-vector/">Read on LinkedIn <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="project">
+            <div class="project-visual"><img src="analyst-index-linkedin-feature.png?v=20261003" width="1200" height="630" loading="lazy" alt=""></div>
+            <div class="project-copy"><div class="mono">Security research / Directory</div><h3>The Analyst Index</h3><p>Compare 111 open-source security tools by workflow, interaction risk, data handling and setup effort. A practical starting point for finding the right tool for the task.</p><div class="project-tags"><span>Research</span><span>Open source</span><span>Tool selection</span></div><a href="https://promethious666.github.io/the-analyst-index/">Explore the Index <span aria-hidden="true">↗</span></a></div>
+          </article>
+          <article class="project">
+            <div class="project-visual"><img src="patch-man-linkedin-feature.png?v=20261003" width="1200" height="630" loading="lazy" alt=""></div>
+            <div class="project-copy"><div class="mono">Security awareness / Arcade</div><h3>Patch Man</h3><p>Navigate the network, collect every security patch and stay clear of roaming threats in this original neon maze game. Security awareness with a playable twist.</p><div class="project-tags"><span>Security awareness</span><span>Browser game</span></div><a href="https://promethious666.github.io/patch-man.html">Play Patch Man <span aria-hidden="true">↗</span></a></div>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="wrap">
-      <h2>Career progression</h2>
-      <p class="section-intro dark-intro">Progressive responsibility from operational and physical security through consulting, engineering, security operations and cyber threat intelligence.</p>
-      <div class="timeline">
-        <article class="role"><div class="date">2026–Present</div><div><h3>Cyber Threat Intelligence Senior Analyst · AJ Bell</h3><p>Senior analyst delivering tactical and operational cyber threat intelligence across cyber, brand and executive threats, turning adversary activity into stronger detections, focused threat hunts, vulnerability priorities and informed incident response.</p></div></article>
-        <article class="role"><div class="date">2025–2026</div><div><h3>Senior Cyber Security Analyst · AJ Bell</h3><p>Incident escalation, detection ownership, intelligence-led hunting, stakeholder reporting, audit evidence and analyst coaching.</p></div></article>
-        <article class="role"><div class="date">2023–2025</div><div><h3>Cyber Security Engineer · Love2shop &amp; PayPoint</h3><p>Security engineering, telemetry onboarding, detection development, endpoint protection, operational dashboards, access controls and analyst training.</p></div></article>
-        <article class="role"><div class="date">2021–2023</div><div><h3>Cyber Security Engineer / Information Security Consultant · DWF</h3><p>Incident investigation, security improvement, threat intelligence, cloud governance, ISO 27001 and third-party assurance.</p></div></article>
-        <article class="role"><div class="date">2018–2021</div><div><h3>Cyber Security Professional &amp; Manager · BT</h3><p>Global SOC operations, SIEM-led investigations, response coordination, playbook development and team capability.</p></div></article>
-        <article class="role"><div class="date">2007–2018</div><div><h3>Earlier operational, consulting and leadership roles</h3><p>Network operations, cyber consulting, service assurance, technical leadership and physical-security investigations.</p></div></article>
+    </section>
+    <section id="expertise" aria-labelledby="expertise-title">
+      <div class="wrap">
+        <div class="section-head"><div class="section-label mono"><span>02 /</span> Expertise</div><div><h2 id="expertise-title">Technical depth.<br>Operational perspective.</h2><p class="section-intro">A career spanning frontline investigations, security engineering, governance and analyst leadership, with an understanding of how controls perform in real organisations.</p></div></div>
+        <div class="capabilities">
+          <article class="capability"><div class="mono">01 / Intelligence</div><h3>Threat intelligence &amp; OSINT</h3><p>Intelligence-led hunting, IOC lifecycle management, source evaluation, confidence handling and translation into defensible detections.</p></article>
+          <article class="capability"><div class="mono">02 / Detection</div><h3>Detection engineering</h3><p>Detection design, rule tuning, false-positive reduction, endpoint and identity coverage, validation and continuous improvement.</p></article>
+          <article class="capability"><div class="mono">03 / Response</div><h3>Incident response</h3><p>Complex investigation leadership, containment coordination, root-cause analysis and clear reporting for technical and senior audiences.</p></article>
+          <article class="capability"><div class="mono">04 / Operations</div><h3>Multi-vendor security operations</h3><p>Operational experience across SIEM, endpoint, network, cloud, email, web, identity and remote-access security technologies.</p></article>
+          <article class="capability"><div class="mono">05 / Engineering</div><h3>Security engineering</h3><p>Identity, remote access, endpoint hardening, cloud controls, APIs, automation and enterprise network, web and email protections.</p></article>
+          <article class="capability"><div class="mono">06 / Leadership</div><h3>Governance and leadership</h3><p>ISO 27001, NIST, CIS and PCI DSS alignment, audit evidence, supplier assurance, management information and analyst development.</p></article>
+          <article class="capability capability-wide" id="ai-efficiency"><div class="mono">07 / Applied innovation</div><h3>AI and operational efficiency</h3><p>Exploring and evaluating AI-assisted workflows to reduce repetitive tasks, support investigations and improve security operations, with a focus on accuracy and data protection.</p></article>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="light" id="credentials">
-    <div class="wrap">
-      <h2>Credentials and professional development</h2>
-      <div class="cert-list">
-        <span>Microsoft SC-900 - Microsoft</span><span>ISC2 CC - ISC2</span><span>CISMP Training - 2022</span><span>CompTIA CySA+ - CompTIA</span><span>CompTIA CSAP - CompTIA</span><span>CompTIA Security+ - CompTIA</span><span>CompTIA Network+ - CompTIA</span><span>SolarWinds Certified Professional - SolarWinds</span><span>Cisco Meraki Network Operator - Cisco</span><span>SC-200 Exam Preparation - QA Ltd</span><span>Applied Threat Hunting Training - EC-Council</span><span>Cyber Risk Intelligence Training - SecurityScorecard</span><span>Security Copilot Ninja Training - Microsoft</span>
+    </section>
+    <section class="experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <div class="section-head"><div class="section-label mono"><span>03 /</span> Experience</div><div><h2 id="experience-title">A career built<br>on the front line.</h2><p class="section-intro">From operational and physical security to consulting, engineering, security operations and cyber threat intelligence.</p></div></div>
+        <div class="timeline">
+          <article class="role"><div class="role-meta mono"><span>AJ Bell</span><span>2026–Present</span></div><h3>Cyber Threat Intelligence Senior Analyst</h3><p>Senior analyst delivering tactical and operational cyber threat intelligence across cyber, brand and executive threats, turning adversary activity into stronger detections, focused threat hunts, vulnerability priorities and informed incident response.</p></article>
+          <article class="role"><div class="role-meta mono"><span>AJ Bell</span><span>2025–2026</span></div><h3>Senior Cyber Security Analyst</h3><p>Incident escalation, detection ownership, intelligence-led hunting, stakeholder reporting, audit evidence and analyst coaching.</p></article>
+          <article class="role"><div class="role-meta mono"><span>Love2shop &amp; PayPoint</span><span>2023–2025</span></div><h3>Cyber Security Engineer</h3><p>Security engineering, telemetry onboarding, detection development, endpoint protection, operational dashboards, access controls and analyst training.</p></article>
+          <article class="role"><div class="role-meta mono"><span>DWF</span><span>2021–2023</span></div><h3>Cyber Security Engineer / Information Security Consultant</h3><p>Incident investigation, security improvement, threat intelligence, cloud governance, ISO 27001 and third-party assurance.</p></article>
+          <article class="role"><div class="role-meta mono"><span>BT</span><span>2018–2021</span></div><h3>Cyber Security Professional &amp; Manager</h3><p>Global SOC operations, SIEM-led investigations, response coordination, playbook development and team capability.</p></article>
+          <article class="role"><div class="role-meta mono"><span>Earlier career</span><span>2007–2018</span></div><h3>Operational, consulting and leadership roles</h3><p>Network operations, cyber consulting, service assurance, technical leadership and physical-security investigations.</p></article>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="wrap">
-      <h2>Projects</h2>
-      <p class="section-intro dark-intro">Tools and projects built around the realities of security analysis.</p>
-      <div class="cards">
-        <article class="card">
-          <div class="number">ARCADE 01</div>
-          <h3>Patch Man</h3>
-          <p>Navigate the network, collect every security patch and stay clear of roaming threats in this original retro maze game.</p>
-          <div class="actions"><a class="button" href="patch-man.html">Play Patch Man</a></div>
-        </article>
-        <article class="card">
-          <div class="number">DIRECTORY 02</div>
-          <h3>The Analyst Index</h3>
-          <p>Compare 111 open-source security tools by workflow, interaction risk, data handling and setup effort.</p>
-          <div class="actions"><a class="button" href="the-analyst-index/">Explore the Index</a></div>
-        </article>
+    </section>
+    <section id="credentials" aria-labelledby="credentials-title">
+      <div class="wrap">
+        <div class="section-head"><div class="section-label mono"><span>04 /</span> Credentials</div><div><h2 id="credentials-title">Keeping the<br>knowledge current.</h2><p class="section-intro">Certifications and continuing professional development across security operations, threat hunting and intelligence.</p></div></div>
+        <div class="credentials-layout"><div></div><div>
+          <div class="credential-group"><h3>Certifications</h3><div class="cert-list"><span>Microsoft SC-900 · Microsoft</span><span>ISC2 CC · ISC2</span><span>CompTIA CySA+ · CompTIA</span><span>CompTIA CSAP · CompTIA</span><span>CompTIA Security+ · CompTIA</span><span>CompTIA Network+ · CompTIA</span><span>SolarWinds Certified Professional · SolarWinds</span><span>Cisco Meraki Network Operator · Cisco</span></div></div>
+          <div class="credential-group"><h3>Training and professional development</h3><div class="cert-list"><span>CISMP Training · 2022</span><span>SC-200 Exam Preparation · QA Ltd</span><span>Applied Threat Hunting Training · EC-Council</span><span>Cyber Risk Intelligence Training · SecurityScorecard</span><span>Security Copilot Ninja Training · Microsoft</span></div></div>
+        </div></div>
       </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="contact-box">
-      <div class="eyebrow">Professional enquiries</div>
-      <h2>Let’s connect</h2>
-      <p class="dark-intro">For professional opportunities and enquiries, contact me through LinkedIn.</p>
-      <div class="actions" style="justify-content:center">
-        <a class="button" href="https://www.linkedin.com/in/swhoami/">Contact via LinkedIn</a>
-        <a class="button secondary" href="cv-public.html">View public CV</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>© 2026 Adam Brown</footer>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-box"><div><div class="mono">05 / Professional enquiries</div><h2 id="contact-title">Let’s connect.</h2><p>For professional opportunities and enquiries, contact me through LinkedIn.</p></div><div class="actions"><a class="button" href="https://www.linkedin.com/in/swhoami/">Contact via LinkedIn <span aria-hidden="true">↗</span></a><a class="text-link" href="cv-public.html">View public CV</a></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><p>© 2026 Adam Brown</p><span class="mono">Threat intelligence / Security operations</span><a href="#top">Back to top ↑</a></div></footer>
 </body>
 </html>
